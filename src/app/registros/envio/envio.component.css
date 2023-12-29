@@ -1,0 +1,44 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div:not(:first-child) {
+  margin-top: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.success {
+  background-color: rgb(103, 220, 103);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: opacity 0.5s;
+}
+
+.error {
+  background-color: rgb(253, 72, 72);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: opacity 0.5s;
+}
+
+
+
+

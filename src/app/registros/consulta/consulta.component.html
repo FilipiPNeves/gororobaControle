@@ -1,0 +1,173 @@
+<form (ngSubmit)="enviar()">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de Início</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="data01" name="data01">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de Término</mat-label>
+    <input matInput [matDatepicker]="picker2" [(ngModel)]="data02" name="data02">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button id="botaoEnviar" type="submit">Consultar</button>
+</form>
+
+<mat-divider></mat-divider>
+
+<table mat-table [dataSource]="dataSource01">
+
+  <!-- Horario Column -->
+  <ng-container matColumnDef="horario">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Data </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{ formatDate(element.horario.toDate()) }} </td>
+  </ng-container>
+
+  <!-- Tipo de Entrada Column -->
+  <ng-container matColumnDef="tipoEntrada">
+    <th class="clickable-header text-center" mat-header-cell *matHeaderCellDef (click)="abrirDivSobrepostaEntrada()"> Tipo de Entrada </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{element.tipoEntrada}} </td>
+  </ng-container>
+
+
+
+
+  <!-- Valor de Entrada Column -->
+  <ng-container matColumnDef="valorEntrada">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Valor de Entrada </th>
+    <td class="text-center" mat-cell *matCellDef="let element">{{formatarValorEntradaeSaida(element.valorEntrada)}} </td>
+  </ng-container>
+
+  <!-- Nome Column -->
+  <ng-container matColumnDef="nome">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Usuário </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns01"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns01;" (click)="cliqueNaEntrada(row)"></tr>
+</table>
+
+<div class="divCliqueNaEntrada" *ngIf="mostrarDivCliqueNaEntrada">
+  <button (click)="excluirEntrada()">Excluir</button>
+  <!-- AINDA NAO FIZ TUDO<button (click)="editarEntrada()">Editar</button>-->
+</div>
+
+<div class="divConfirmandoExclusao" *ngIf="mostrarconfirmandoExclusao">
+  <p>Data: {{ dataFormatada2(dataEntradaClicada) }}</p>
+  <p>Tipo: {{ tipoEntradaEntradaClicada }}</p>
+  <p>Valor: {{ valorEntradaClicada }}</p>
+  <button (click)="confirmarExclusaoEntrada()">Confirmar exclusão</button>
+</div>
+
+<div class="divEditandoEntrada" *ngIf="mostrarDivEditandoEntrada">
+  <p>Data: {{ dataFormatada2(dataEntradaClicada) }}</p>
+  <p>Tipo: {{ tipoEntradaEntradaClicada }}</p>
+  <p>Valor: {{ valorEntradaClicada }}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de Entrada</mat-label>
+    <mat-select [(ngModel)]="tipoEntradaSelecionado">
+      <mat-option *ngFor="let tipoEntrada of todosTiposEntradasDoPeriodo" [value]="tipoEntrada">
+        {{ tipoEntrada }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Valor de Entrada</mat-label>
+    <input matInput type="text" [(ngModel)]="valorEntradaEditado">
+  </mat-form-field>
+</div>
+
+
+
+<div class="div-sobreposta div-sobreposta-entrada" *ngIf="mostrarDivSobrepostaEntrada">
+  <!-- Conteúdo da div sobreposta -->
+  <h1>Selecione um tipo de entrada</h1>
+  <button class="botoesTiposEntrada" *ngFor="let tipoEntrada of todosTiposEntradasDoPeriodo" (click)="selecionarTipoEntrada(tipoEntrada)">{{ tipoEntrada }}</button>
+  <button class="botoesTiposEntrada" (click)="todosPedidos()">Todos</button>
+</div>
+
+
+
+<p class="totalEntrada">Total de Entrada: R$ {{ calcularTotalEntrada(dataSource01) }}</p>
+
+<mat-divider></mat-divider>
+
+<table mat-table [dataSource]="dataSource02">
+
+  <!-- Horario Column -->
+  <ng-container matColumnDef="horario">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Data </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{ formatDate(element.horario.toDate()) }} </td>
+  </ng-container>
+
+  <!-- Tipo de Entrada Column -->
+  <ng-container matColumnDef="tipoSaida">
+    <th class="clickable-header text-center" mat-header-cell *matHeaderCellDef (click)="abrirDivSobrepostaSaida()"> Saida </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{element.tipoSaida}} </td>
+  </ng-container>
+
+   <!-- Tipo de Saida Column -->
+  <ng-container matColumnDef="tipoSaida02">
+    <th class="clickable-header text-center" mat-header-cell *matHeaderCellDef (click)="abrirDivSobrepostaTipoSaida()"> Tipo de Saida </th>
+    <td class="text-center" mat-cell *matCellDef="let element">
+      {{element.tipoSaidaVariavel ? element.tipoSaidaVariavel : element.tipoSaidaFixa}}
+    </td>
+  </ng-container>
+
+  <!-- Nome Column -->
+  <ng-container matColumnDef="nome">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Usuário </th>
+    <td class="text-center" mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+
+
+
+  <!-- Valor de Entrada Column -->
+  <ng-container matColumnDef="valorSaida">
+    <th class="text-center" mat-header-cell *matHeaderCellDef> Valor de Saida </th>
+    <td mat-cell *matCellDef="let element">{{formatarValorEntradaeSaida(element.valorSaida)}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns02"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns02;" (click)="cliqueNaSaida(row)"></tr>
+</table>
+
+<div class="divCliqueNaEntrada" *ngIf="mostrarDivCliqueNaSaida">
+  <button (click)="abrirDivconfirmarExclusaoSaida()">Excluir Saída</button>
+</div>
+
+<div class="divConfirmandoExclusao" *ngIf="mostrarDivConfirmandoExclusao">
+  <p>Data: {{ dataFormatada2(dataSaidaClicada) }}</p>
+  <p>Tipo: {{ tipoSaidaSaidaClicada }}</p>
+  <p>Saída Fixa: {{ tipoSaidaFixaClicada }}</p>
+  <p>Saída Variável: {{ tipoSaidaVariavelClicada }}</p>
+  <p>Valor: {{ valorSaidaClicada }}</p>
+  <button (click)="confirmarExclusaoSaida()">Confirmar Exclusão</button>
+</div>
+
+<div class="div-sobreposta div-sobreposta-saida" *ngIf="mostrarDivSobrepostaSaida">
+  <!-- Conteúdo da div sobreposta -->
+  <h1>Selecione uma Saída</h1>
+  <button class="botoesTiposEntrada" (click)="todasSaidasFixas()">Fixas</button>
+  <button class="botoesTiposEntrada" (click)="todasSaidasVariaveis()">Variavéis</button>
+  <button class="botoesTiposEntrada" (click)="todasSaidas()">Fixas e Variavéis</button>
+</div>
+
+<div class="div-sobreposta div-sobreposta-tipo-saida" *ngIf="mostrarDivSobrepostaTipoSaida">
+  <!-- Conteúdo da div sobreposta -->
+  <h1>Selecione um tipo de Saída</h1>
+  <button class="botoesTiposEntrada" *ngFor="let tipoSaida of tipoDeSaida" (click)="selecionarTipoTipoSaida(tipoSaida)">{{ tipoSaida }}</button>
+  <button class="botoesTiposEntrada" (click)="todosTiposSaidas()">Todos Tipos de Saída</button>
+</div>
+
+
+
+<p class="totalEntrada">Total de Saída: R$ {{ calcularTotalSaida(dataSource02) }}</p>

@@ -1,0 +1,84 @@
+<form #objetoEnviado="ngForm" (ngSubmit)="enviar(objetoEnviado)">
+  <div>
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedOption" name="radioOptions">
+      <mat-radio-button value="option1" class="entrada">Entrada</mat-radio-button>
+      <mat-radio-button value="option2" class="saida">Saída</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div>
+    <div *ngIf="selectedOption === 'option1'">
+      <mat-form-field>
+        <mat-select placeholder="Qual tipo?" [(value)]="selectedEntrada" [(ngModel)]="selectedEntrada" name="selectedEntrada">
+          <mat-option *ngFor="let entrada of entradas" [value]="entrada.tipo">
+            {{entrada.tipo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="selectedEntrada === 'Outros'">
+        <mat-form-field>
+          <input matInput placeholder="Qual tipo?" [(ngModel)]="outrosEntrada" name="outrosEntrada">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Valor" [(ngModel)]="valorEntrada" name="valorEntrada">
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="selectedOption === 'option2'">
+      <mat-form-field>
+        <mat-select [(value)]="selectedSaida" placeholder="Qual tipo?" [(ngModel)]="selectedSaida" name="selectedSaida">
+          <mat-option *ngFor="let saida of saidas" [value]="saida.tipo">
+            {{saida.tipo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="selectedSaida === 'Variáveis'">
+        <mat-form-field>
+          <mat-select [(value)]="tipoDeSaidaSelecionado" [(ngModel)]="tipoSaida" name="tipoSaida">
+            <mat-option *ngFor="let variavel of variaveis" [value]="variavel.tipo">
+              {{variavel.tipo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="tipoDeSaidaSelecionado === 'Outros'">
+          <mat-form-field>
+            <input matInput placeholder="Qual tipo?" [(ngModel)]="outrosSaida" name="outrosSaida">
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="selectedSaida === 'Fixas'">
+        <mat-form-field>
+          <mat-select [(value)]="tipoDeSaidaSelecionado" [(ngModel)]="fixasSaidas" name="fixasSaidas">
+            <mat-option *ngFor="let fixa of fixas" [value]="fixa.tipo">
+              {{fixa.tipo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Valor" [(ngModel)]="valorSaida" name="valorSaida">
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Escolha uma data</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="selectedDate">
+        <mat-hint>DIA/MÊS/ANO</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+  </div>
+</form>
+
+<div *ngIf="showMessage" [ngClass]="{'success': status === 'success', 'error': status === 'error'}">
+  {{message}}
+</div>
+

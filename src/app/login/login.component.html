@@ -1,0 +1,22 @@
+<mat-card class="login-card">
+  <mat-card-header class="header">
+    <h1>Gororoba do Paulinho</h1>
+  </mat-card-header>
+  <mat-card-content>
+
+    <form class="login-form" #objLogin="ngForm" (ngSubmit)="login(objLogin)">
+
+      <mat-form-field class="form-field">
+        <input type="email" name="email" matInput placeholder="Digite seu E-mail" ngModel required>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput type="password" name="password" placeholder="Digite sua senha" ngModel required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="login-button" type="submit">Entrar</button>
+    </form>
+
+    <button mat-raised-button color="primary" class="register-button" type="button" (click)="register()">Cadastrar</button>
+  </mat-card-content>
+</mat-card>

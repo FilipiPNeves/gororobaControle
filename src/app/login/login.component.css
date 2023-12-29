@@ -1,0 +1,43 @@
+
+
+.login-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.header {
+  background-color: #ffe046;
+  padding: 10px;
+  border-radius: 60px;
+}
+
+.header h1 {
+  width: 100%;
+  text-align: center;
+
+}
+
+.title {
+  font-size: 20px;
+  margin-right: 0px;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.register-button {
+  width: 100%;
+}

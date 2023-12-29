@@ -1,0 +1,26 @@
+<div class="balanco-mensal">
+  <div class="grafico-entradas">
+    <h3>Entradas</h3>
+    <canvas id="graficoEntradas"></canvas>
+  </div>
+
+  <div class="grafico-saidas">
+    <h3>Saídas</h3>
+    <canvas id="graficoSaidas"></canvas>
+  </div>
+
+  <div class="resultado-semanal">
+    <div class="resultado-semanal">
+      <h3>Resultado Semanal</h3>
+      <ul>
+        <li *ngFor="let resultado of resultadoSemanal; let i = index">Semana {{ i + 1 }}: R$ {{ formatarValor(resultado) }}</li>
+      </ul>
+    </div>
+
+    <div class="resultado-mensal">
+      <h3>Resultado Mensal</h3>
+      <p> R$ {{ formatarValor(resultadoMensal) }}</p>
+    </div>
+  </div>
+  <div class="espaco"></div>
+</div>

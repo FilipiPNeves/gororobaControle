@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+#toolbar1 {
+  background-color: #ffed28;
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+#toolbar1 #usuario {
+  font-size: 12px;
+}
+
+#toolbar1 #titulo {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#toolbar1 #logOut #logOutButton {
+  background-color: #fff;
+  color: #000000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#toolbar1 #logOut #logOutButton:hover {
+  background-color: #e0e0e0;
+}
+
+mat-toolbar {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+mat-toolbar span {
+  margin: 0 10px;
+}
+
+mat-toolbar #botao1,
+mat-toolbar #botao2,
+mat-toolbar #botao3 {
+  color: #000000;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+mat-toolbar #botao1.active,
+mat-toolbar #botao2.active,
+mat-toolbar #botao3.active {
+  color: #020202;
+  background-color: #ffed28;
+  border-radius: 3px;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+  #toolbar1 #usuario {
+    font-size: 10px;
+  }
+
+  #toolbar1 #titulo {
+    font-size: 12px;
+  }
+
+  mat-toolbar span {
+    margin: 0 5px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  #toolbar1 #usuario {
+    font-size: 8px;
+  }
+
+  #toolbar1 #titulo {
+    font-size: 10px;
+  }
+
+  #toolbar1 #logOutButton {
+    font-size: 10px;
+  }
+
+  mat-toolbar span {
+    margin: 0 5px;
+  }
+}
+

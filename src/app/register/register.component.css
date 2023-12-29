@@ -1,0 +1,29 @@
+.register-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+}
+
+.form-field {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2em;
+}
+
+.register-button {
+  margin-right: 1em; /* Removido este estilo */
+}
+
+.back-button {
+  /* Removido margem de cima */
+}

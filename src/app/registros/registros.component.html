@@ -1,0 +1,26 @@
+<mat-toolbar id="toolbar1">
+
+  <span id="usuario">{{ nome }}</span>
+
+  <span id="titulo">Controle Financeiro</span>
+
+  <span id="logOut">
+    <button id="logOutButton" (click)="logout()">Sair</button>
+  </span>
+
+</mat-toolbar>
+
+<mat-toolbar>
+  <span>
+    <button id="botao1" mat-button routerLinkActive="active" routerLink="envio">Enviar</button>
+  </span>
+  <span>
+    <button id="botao2" mat-button routerLinkActive="active" routerLink="consulta">Consultar</button>
+  </span>
+  <span>
+    <button id="botao3" mat-button routerLinkActive="active" routerLink="balancoMensal">Balanço</button>
+  </span>
+</mat-toolbar>
+
+
+<router-outlet>

@@ -1,0 +1,157 @@
+form {
+  margin: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.totalEntrada {
+  width: 40%;
+  margin: 2em auto 6em;
+  background-color: yellow;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.div-sobreposta {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  /* Estilos adicionais */
+  background-color: rgb(177, 177, 164);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.div-sobreposta h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.div-sobreposta-tipo-saida {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-height: 80%; /* Define uma altura máxima para a div */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando o conteúdo exceder a altura máxima */
+  /* Estilos adicionais */
+  background-color: rgb(177, 177, 164);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.div-sobreposta-tipo-saida h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.botoesTiposEntrada {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #ffed28;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.botoesTiposEntrada:hover {
+  background-color: #ffcc00;
+}
+
+.botoesTiposEntrada:last-child {
+  margin-right: 0; /* Remove a margem direita para o último botão */
+}
+
+.clickable-header {
+  cursor: pointer;
+  color: #d4c202;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.clickable-header::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ccbb01;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.clickable-header:hover {
+  color: #b0a202;
+}
+
+.clickable-header:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+
+
+
+.text-center {
+  text-align: center;
+}
+
+
+.divCliqueNaEntrada {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  /* Estilos adicionais */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.divConfirmandoExclusao {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  /* Estilos adicionais */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.divEditandoEntrada {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  /* Estilos adicionais */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
